@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="change-key.min.js"></script>
+	<title>Change key</title>
+	<style>
+	.container {
+		max-width:500px;
+		width:100%;
+		margin:0 auto;
+	}
+	input,select,textarea {
+        padding:10px;
+        width:100%;
+        border:1px solid #e7e7e7;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+	<h3>Change key</h3>
+	<p>
+		<input type="text" name="title" class="geokey" placeholder="Type in english"/>
+	<script>
+	$(function(){
+		$('.geokey').changeKey();
+	})
+	</script>
+	</p>
+	<p>
+		<textarea name="message" class="love" placeholder="Type: Hate"></textarea>
+	<script>
+	$(function(){
+		$('.love').changeKey({
+			lang:{
+				h:'l',
+				H:'L',
+				a:'o',
+				A:'O',
+				t:'v',
+				T:'V'
+			}
+		});
+	})
+	</script>
+	</p>
+	</div>
+
+</body>
+</html>
