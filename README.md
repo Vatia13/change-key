@@ -4,10 +4,11 @@ jQuery plugin to transform form field key to any symbol you want.
 jQuery - პლაგინი გარდაქმნის ფორმის ველში ნებისმიერ ასოს სიმბოლოდ და პირიქით. 
 მაგ: გარდაქმნის ლათინურ კლავიატურას ქართულად და ა.შ
 
-## This plugin is compatible and works with jQuery Chosen Plugin. - პლაგინი თავსებადია jQuery Chosen პლაგინთან (https://harvesthq.github.io/chosen/)
+## This plugin is compatible and works with jQuery Chosen Plugin.
+პლაგინი თავსებადია jQuery Chosen პლაგინთან (https://harvesthq.github.io/chosen/)
 
-
-### This example transforms English keys to Georgian - ეს მაგალითი გარდაქმნის ინგლისურ ასოებს ქართულად
+### This example transforms English keys to Georgian
+ეს მაგალითი გარდაქმნის ინგლისურ ასოებს ქართულად
 
 ```
 <input type="text" name="title" class="geokey"/>
