@@ -58,35 +58,59 @@ $.fn.changeKey = function(options){
     },options);
 
     // Transforms Key Word to Value
-    var change = function(input,key,val){
-        var start = input[0].selectionStart + val.length;
-        var sl = input.val().slice(0,input[0].selectionStart);
-        var result = sl + key.replace(key,val) + input.val().slice(input[0].selectionStart);
-        input.val(result);
-        input[0].selectionStart = start;
-        input[0].selectionEnd = start;
-        input[0].focus();
+    var change = function(input,val){
+        var start = input[0].selectionStart;
+        var end = input[0].selectionEnd;
+        var length = input.val().length;
+
+        var array = input.val().split("");
+
+        if(end > start){
+            if((end - start) >= length){
+                input.val(val);
+                input.focus();
+            }else{
+                array = $.grep( array, function( n, i ) {
+                    return i >= start && i < end;
+                }, true );
+                array.splice(start,0,""+val+"");
+                input.val(array.join(""));
+                input[0].selectionStart = start+1;
+                input[0].selectionEnd = start+1;
+                input[0].focus();
+            }
+        }else if(end==start){
+            array.splice(start,0,""+val+"");
+            input.val(array.join(""));
+            input[0].selectionStart = start+1;
+            input[0].selectionEnd = start+1;
+            input[0].focus();
+        }else{
+            input.val(input.val() + val);
+            input.focus();
+        }
+        return false;
     };
 
     // On Key press method
     var onPress = function(e){
         var input = $(this);
         if(option.lang[e.key] != null){
-            change(input,e.key,option.lang[e.key]);
+            change(input,option.lang[e.key]);
             e.preventDefault();
         }
     };
 
     // Checking if you are using jQuery Chosen Select and adding changeKey on its input
     var checkChosen = function(){
-            $.each(elem,function(index){
-                if(elem[index].localName == 'select'){
-                    setTimeout(function(){
-                        var chosenInput = $(elem[index]).next('.chosen-container').find('input');
-                        chosenInput.on('keypress',onPress);
-                    },100);
-                }
-            });
+        $.each(elem,function(index){
+            if(elem[index].localName == 'select'){
+                setTimeout(function(){
+                    var chosenInput = $(elem[index]).next('.chosen-container').find('input');
+                    chosenInput.on('keypress',onPress);
+                },100);
+            }
+        });
     };
 
     // Calling main input keypress event
