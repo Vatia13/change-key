@@ -95,8 +95,9 @@ $.fn.changeKey = function(options){
     // On Key press method
     var onPress = function(e){
         var input = $(this);
-        if(option.lang[e.key] != null){
-            change(input,option.lang[e.key]);
+        var key = String.fromCharCode(e.which);
+        if(option.lang[key] != null){
+            change(input,option.lang[key]);
             e.preventDefault();
         }
     };
