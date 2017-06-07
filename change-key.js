@@ -1,7 +1,6 @@
 $.fn.changeKey = function(options){
     var elem = $(this);
     var option = $.extend({
-        loaded: false,
         lang: {
             a:'ა',
             A:'ა',
@@ -97,8 +96,9 @@ $.fn.changeKey = function(options){
     var onPress = function(e){
         e.stopImmediatePropagation();
         var input = $(e.target);
-        if(option.lang[e.key] != null){
-            change(input,option.lang[e.key]);
+        var key = String.fromCharCode(e.which);
+        if(option.lang[key] != null){
+            change(input,option.lang[key]);
             e.preventDefault();
         }
     };
